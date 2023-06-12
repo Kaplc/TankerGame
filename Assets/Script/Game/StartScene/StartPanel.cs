@@ -19,7 +19,8 @@ public class StartPanel : BasePanel<StartPanel>
         };
         btnSetting.ClickEvent += () =>
         {
-            
+            SettingPanel.Instance.Show();
+            this.Hide();
         };
         btnEnd.ClickEvent += () =>
         {

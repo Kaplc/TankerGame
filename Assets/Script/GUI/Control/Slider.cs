@@ -19,7 +19,7 @@ public class Slider : BaseControl
 
     public E_SliderType type;
     public GUIStyle thumbStyle;
-    public UnityAction<float> ac;
+    public UnityAction<float> settingValue;
 
     protected override void StyleOnShow()
     {
@@ -35,7 +35,7 @@ public class Slider : BaseControl
 
         if (_oldValue != value)
         {
-            ac?.Invoke(value);
+            settingValue?.Invoke(value);
             _oldValue = value;
         }
     }
@@ -54,7 +54,7 @@ public class Slider : BaseControl
 
         if (_oldValue != value)
         {
-            ac?.Invoke(value);
+            settingValue?.Invoke(value);
             _oldValue = value;
         }
     }
