@@ -28,10 +28,9 @@ public class StartPanel : BasePanel<StartPanel>
         };
         btnRank.ClickEvent += () =>
         {
-            
+            RankPanel.Instance.Show();
+            Hide();
         };
-        
     }
-
-
+    
 }
