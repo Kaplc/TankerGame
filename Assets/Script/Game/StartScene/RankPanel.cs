@@ -8,7 +8,6 @@ public class RankPanel : BasePanel<RankPanel>
 {
     public Button btnClose;
     
-    public List<Label> rankList = new List<Label>();
     public List<Label> nameList = new List<Label>();
     public List<Label> scoreList = new List<Label>();
     public List<Label> timeList = new List<Label>();
@@ -18,8 +17,7 @@ public class RankPanel : BasePanel<RankPanel>
         // 添加所有子对象到List
         for (int i = 1; i < 11; i++)
         {
-            // Rank/ 加'\'可以指定哪个对象的子对象
-            rankList.Add(transform.Find("Rank/RankLabel" + i).GetComponent<Label>());
+            // Name/ 加'\'可以指定哪个对象的子对象
             nameList.Add(transform.Find("Name/NameLabel" + i).GetComponent<Label>());
             scoreList.Add(transform.Find("Score/ScoreLabel" + i).GetComponent<Label>());
             timeList.Add(transform.Find("Time/TimeLabel" + i).GetComponent<Label>());
@@ -40,7 +38,18 @@ public class RankPanel : BasePanel<RankPanel>
         UpdateInfos();
     }
 
-    public void UpdateInfos()
+    private void UpdateInfos()
     {
+        // 读取数据并更新到ui面板
+        RankInfos rankInfos = BaseDataManage.Instance.rankInfos;
+        List<RankInfo> rankList = rankInfos.rankList;
+        for (int i = 0; i < rankList.Count; i++)
+        {
+            nameList[i].Content.text  = rankList[i].name;
+            scoreList[i].Content.text = rankList[i].score.ToString();
+            
+            // 计算分钟
+            timeList[i].Content.text = (rankList[i].time / 60) + "分" + (rankList[i].time % 60) + "秒";
+        }
     }
 }
