@@ -23,11 +23,12 @@ public class GamePanel : MonoBehaviour
     {
         btnClose.ClickEvent += () =>
         {
-            SceneManager.LoadScene("StartScene");
+            QuitPanel.Instance.Show();
         };
         btnSetting.ClickEvent += () =>
         {
             SettingPanel.Instance.Show();
+            Time.timeScale = 0;
         };
         
     }

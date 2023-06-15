@@ -22,5 +22,6 @@ public class BasePanel<T> : MonoBehaviour where T : class
     public virtual void Hide()
     {
         gameObject.SetActive(false);
+        
     }
 }

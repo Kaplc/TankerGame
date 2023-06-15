@@ -39,6 +39,7 @@ public class SettingPanel : BasePanel<SettingPanel>
     {
         base.Hide();
         UpdateInfos(); 
+        Time.timeScale = 1;
     }
 
     private void UpdateInfos()
