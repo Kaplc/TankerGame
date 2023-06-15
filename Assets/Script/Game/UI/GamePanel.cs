@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class GamePanel : MonoBehaviour
@@ -20,8 +21,14 @@ public class GamePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        btnClose.ClickEvent += () => { };
-        btnSetting.ClickEvent += () => { };
+        btnClose.ClickEvent += () =>
+        {
+            SceneManager.LoadScene("StartScene");
+        };
+        btnSetting.ClickEvent += () =>
+        {
+            SettingPanel.Instance.Show();
+        };
         
     }
 

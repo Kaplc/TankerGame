@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingPanel : BasePanel<SettingPanel>
 {
@@ -21,8 +22,15 @@ public class SettingPanel : BasePanel<SettingPanel>
         
         btnClose.ClickEvent += () =>
         {
-            StartPanel.Instance.Show();
-            this.Hide();
+            if (SceneManager.GetActiveScene().name == "StartScene")
+            {
+                StartPanel.Instance.Show();
+                this.Hide();
+            }
+            else
+            {
+                Hide();
+            }
         };
         this.Hide(); // 设置面板先隐藏自己
     }
