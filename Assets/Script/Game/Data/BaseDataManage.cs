@@ -20,8 +20,8 @@ public class BaseDataManage
         if (musicData.firstStartUp == true)
         {
             musicData.firstStartUp = false;
-            musicData.musicValue = 70f;
-            musicData.soundValue = 70f;
+            musicData.musicValue = 0.7f;
+            musicData.soundValue = 0.7f;
             musicData.musicOpen = true;
             musicData.soundOpen = true;
             PlayerPrefsManager.Instance.Save(musicData, "Music");
@@ -30,21 +30,23 @@ public class BaseDataManage
 
     #region 声音保存
 
-    public void SettingMusicOpen(bool openOrClose)
+    public void SettingMusicOpen(bool open)
     {
-        musicData.musicOpen = openOrClose;
+        musicData.musicOpen = open;
+        BGM.Instance.OpenMusic(open); // 是否静音
         PlayerPrefsManager.Instance.Save(musicData, "Music");
     }
 
-    public void SettingSoundOpen(bool openOrClose)
+    public void SettingSoundOpen(bool open)
     {
-        musicData.soundOpen = openOrClose;
+        musicData.soundOpen = open;
         PlayerPrefsManager.Instance.Save(musicData, "Music");
     }
 
     public void SettingMusicValue(float value)
     {
         musicData.musicValue = value;
+        BGM.Instance.ChangeMusicVolume(value);
         PlayerPrefsManager.Instance.Save(musicData, "Music");
     }
 

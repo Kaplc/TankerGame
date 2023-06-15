@@ -14,7 +14,7 @@ public class SettingPanel : BasePanel<SettingPanel>
     void Start()
     {
         // 添加改变值时的后续要执行的函数
-        togMusic.changeValue += (value) => BaseDataManage.Instance.SettingMusicOpen(value); // 存盘
+        togMusic.changeValue += (value) => BaseDataManage.Instance.SettingMusicOpen(value); // 处理设置并存盘
         togSound.changeValue += (value) => BaseDataManage.Instance.SettingSoundOpen(value);
         sldMusic.settingValue += (value) => BaseDataManage.Instance.SettingMusicValue(value);
         sldSound.settingValue += (value) => BaseDataManage.Instance.SettingSoundValue(value);
@@ -24,10 +24,6 @@ public class SettingPanel : BasePanel<SettingPanel>
             StartPanel.Instance.Show();
             this.Hide();
         };
-        togMusic.changeValue += (value) => { };
-        togSound.changeValue += (value) => { };
-        sldMusic.settingValue += (value) => { };
-        sldSound.settingValue += (value) => { };
         this.Hide(); // 设置面板先隐藏自己
     }
 
