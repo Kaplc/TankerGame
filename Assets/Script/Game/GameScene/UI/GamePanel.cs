@@ -15,7 +15,7 @@ public class GamePanel : BasePanel<GamePanel>
     public Control.Label lbScore;
     public Control.Label lbFPS;
     public int hpWidth;
-
+    
     int frameCount = 0;
     float deltaTime = 0.0f;
     float updateRate = 0.5f; // 更新帧率的时间间隔
@@ -23,6 +23,7 @@ public class GamePanel : BasePanel<GamePanel>
     [HideInInspector] public int score;
 
     [HideInInspector] public float time;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,15 @@ public class GamePanel : BasePanel<GamePanel>
 
             frameCount = 0;
             deltaTime -= updateRate;
+        }
+        
+        // 判断按下Esc
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitPanel.Instance.Show();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            
         }
     }
 

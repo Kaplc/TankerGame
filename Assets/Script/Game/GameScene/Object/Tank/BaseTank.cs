@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +14,19 @@ public abstract class BaseTank : MonoBehaviour
     public float bodyRotationSpeed = 10;
     public float headRotationSpeed = 10;
 
-    public GameObject head;
-    public GameObject deadEff;
+    public GameObject head; 
+    public GameObject deadEff; // 死亡特效
+    public GameObject weapon; // 武器
+
+    public Component weaponComponent;
 
     public abstract void Move();
     public abstract void Shoot();
+
+    private void Start()
+    {
+        weaponComponent = weapon.GetComponent<Weapon>();
+    }
 
     public virtual void Wound(BaseTank otherTank)
     {
