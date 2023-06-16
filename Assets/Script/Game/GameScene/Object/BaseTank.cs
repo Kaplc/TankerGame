@@ -7,31 +7,34 @@ public abstract class BaseTank : MonoBehaviour
     public int atk;
     public int def;
     public int hp;
+    public int maxHp;
 
-    public int speed;
-    public float bodyRotation;
-    public float headRotation;
+    public int speed = 10;
+    public float bodyRotationSpeed = 10;
+    public float headRotationSpeed = 10;
 
+    public GameObject head;
     public GameObject deadEff;
-    
-    public abstract void  Move();
-    public abstract void  Shoot();
+
+    public abstract void Move();
+    public abstract void Shoot();
 
     public virtual void Wound(BaseTank otherTank)
     {
         hp -= otherTank.atk - def;
-        
+
         if (hp <= 0)
         {
             hp = 0;
             Dead();
         }
     }
+
     public virtual void Dead()
     {
         // 实例化死亡特效对象
         GameObject deadEff = Instantiate(this.deadEff, transform.position, transform.rotation);
-        
+
         // 控制特效音效
         AudioSource audioSource = deadEff.GetComponent<AudioSource>();
         audioSource.volume = BaseDataManage.Instance.musicData.musicValue;
