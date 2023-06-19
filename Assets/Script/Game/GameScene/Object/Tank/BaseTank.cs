@@ -16,16 +16,20 @@ public abstract class BaseTank : MonoBehaviour
 
     public GameObject head; 
     public GameObject deadEff; // 死亡特效
-    public GameObject weapon; // 武器
-
-    public Component weaponComponent;
+    public Weapon weapon; // 武器
+    
 
     public abstract void Move();
     public abstract void Shoot();
 
     private void Start()
     {
-        weaponComponent = weapon.GetComponent<Weapon>();
+        SetWeapon(weapon);
+    }
+
+    public void SetWeapon(Weapon weaponObj)
+    {
+        weapon = weaponObj;
     }
 
     public virtual void Wound(BaseTank otherTank)

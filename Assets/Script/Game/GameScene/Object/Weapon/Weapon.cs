@@ -6,31 +6,27 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public GameObject father; // 安装对象
-    public GameObject[] firePos;
-    
+    public BaseTank father; // 安装该武器的对象
+    public Transform[] firePos;
 
-    // Update is called once per frame
-    void Update()
+    public void SetFatherTank(BaseTank tank)
     {
-        
+        father = tank;
     }
 
-    public void SetTank(BaseTank tank)
-    {
-        father = tank.gameObject;
-    }
     public void Fire()
     {
         for (int i = 0; i < firePos.Length; i++)
         {
             // 创建子弹
-            GameObject bullet = Instantiate(bulletPrefab, firePos[i].transform.position,
-                firePos[i].transform.rotation);
-            // 设置子弹父对象
-            bullet.GetComponent<Bullet>().father = father;
+            GameObject bullet = Instantiate(bulletPrefab, firePos[i].transform.position, firePos[i].transform.rotation);
+            // 发射音效
+            AudioSource audioSource = bullet.GetComponent<AudioSource>();
+            audioSource.volume = BaseDataManage.Instance.musicData.soundValue;
+            audioSource.mute = !BaseDataManage.Instance.musicData.soundOpen;
+            // 设置子弹发射对象
+            Bullet bulletCpm = bullet.GetComponent<Bullet>();
+            bulletCpm.SetFatherTank(father); // 
         }
     }
-
-    
 }

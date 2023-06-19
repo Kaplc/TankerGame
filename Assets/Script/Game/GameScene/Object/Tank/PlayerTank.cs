@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Control;
 using UnityEngine;
 
 public class PlayerTank : BaseTank
 {
+    public int waponSpeed;
+    public Texture quasiStar;
     
-
     // Update is called once per frame
     void Update()
     {
@@ -16,13 +18,19 @@ public class PlayerTank : BaseTank
         {
             Shoot();
         }
+        // 炮管角度
+        if (Input.GetKey(KeyCode.Q))
+        {
+            quasiStar.GUIPos.OffSetPos.y--;
+            weapon.transform.Rotate(Vector3.right * (Time.deltaTime * waponSpeed));
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            quasiStar.GUIPos.OffSetPos.y++;
+            weapon.transform.Rotate(-Vector3.right * (Time.deltaTime * waponSpeed));
+        }
     }
 
-    public void SetWeapon(GameObject weapon)
-    {
-        this.weapon = weapon;
-    }
-    
     public override void Move()
     {
         // 前后
@@ -35,7 +43,7 @@ public class PlayerTank : BaseTank
 
     public override void Shoot()
     {
-        ((Weapon)weaponComponent).Fire();
+        weapon.Fire();
     }
 
     public override void Dead()

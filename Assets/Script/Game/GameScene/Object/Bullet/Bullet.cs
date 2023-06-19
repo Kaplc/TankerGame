@@ -7,14 +7,11 @@ public class Bullet : MonoBehaviour
     public float Speed = 10;
 
     public GameObject effectPrefbs;
-    public GameObject father; // 发射对象
-
-    public AudioSource audioSource;
+    public BaseTank fatherTank; // 发射对象
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -27,16 +24,22 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Walls"))
         {
+            
             // 特效
             GameObject effObj = Instantiate(effectPrefbs, transform.position, transform.rotation);
             Destroy(effObj, 1);
-            // 音效
-            AudioSource audioObj = Instantiate(audioSource, transform.position, transform.rotation);
-            audioObj.GetComponent<AudioSource>().volume = BaseDataManage.Instance.musicData.soundValue;
-            audioObj.GetComponent<AudioSource>().mute = !BaseDataManage.Instance.musicData.soundOpen;
-            Destroy(audioObj, 1);
-            
-            Destroy(gameObject);
+            // // 音效
+            // AudioSource audioSource = GetComponent<AudioSource>();
+            // audioSource.volume = BaseDataManage.Instance.musicData.soundValue;
+            // audioSource.mute = !BaseDataManage.Instance.musicData.soundOpen;
+            // Destroy(audioSource, 1);
+
+            Destroy(gameObject, 1);
         }
+    }
+
+    public void SetFatherTank(BaseTank Tank)
+    {
+        fatherTank = Tank;
     }
 }
