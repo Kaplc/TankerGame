@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83de4c384de4f1e48b15d8552ebde7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 50
+  Speed: 25
   effectPrefbs: {fileID: 6952905792231459533, guid: 46ff53da64a28144d83aa2c08259fce5,
     type: 3}
   fatherTank: {fileID: 0}

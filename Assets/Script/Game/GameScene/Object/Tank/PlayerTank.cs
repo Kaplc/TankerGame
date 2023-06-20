@@ -7,10 +7,15 @@ using UnityEngine;
 public class PlayerTank : BaseTank
 {
     public int waponSpeed;
-    public Texture quasiStar;
-    
+    public Texture quasiStar; // 准星
+
+    private void Start()
+    {
+        weapon = Instantiate(weapon, weaponMount, false); // 初始化武器
+    }
+
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Move();
         // 射击
@@ -22,13 +27,19 @@ public class PlayerTank : BaseTank
         if (Input.GetKey(KeyCode.Q))
         {
             quasiStar.GUIPos.OffSetPos.y--;
-            weapon.transform.Rotate(Vector3.right * (Time.deltaTime * waponSpeed));
+            weapon.gameObject.transform.Rotate(Vector3.right * (Time.deltaTime * waponSpeed));
         }
         if (Input.GetKey(KeyCode.E))
         {
             quasiStar.GUIPos.OffSetPos.y++;
-            weapon.transform.Rotate(-Vector3.right * (Time.deltaTime * waponSpeed));
+            weapon.gameObject.transform.Rotate(-Vector3.right * (Time.deltaTime * waponSpeed));
         }
+    }
+
+    public void InstallWeapon(Weapon otherWeapon)
+    {
+        Destroy(this.weapon.gameObject);
+        this.weapon = Instantiate(otherWeapon, weaponMount, false); // 创建武器对象作为炮台的子对象
     }
 
     public override void Move()

@@ -4998,7 +4998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83de4c384de4f1e48b15d8552ebde7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 50
+  Speed: 25
   effectPrefbs: {fileID: 8270540672914068141, guid: 9607e3f99dcf66f4b85330e99b26b470,
     type: 3}
   fatherTank: {fileID: 0}

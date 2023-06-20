@@ -4812,7 +4812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83de4c384de4f1e48b15d8552ebde7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 15
+  Speed: 25
   effectPrefbs: {fileID: 8768755644764299641, guid: 7ce0c2d1ed5ad4742a35744daaa5f300,
     type: 3}
   fatherTank: {fileID: 0}
