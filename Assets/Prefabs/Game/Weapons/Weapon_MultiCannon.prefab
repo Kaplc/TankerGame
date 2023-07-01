@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587296853c6c7a44980315dc82e158f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponName: MultiCannon
+  cd: 1
   bulletPrefab: {fileID: 1083065305961700419, guid: 93045fd40773a5a4fad31133da1558fe,
     type: 3}
   father: {fileID: 0}

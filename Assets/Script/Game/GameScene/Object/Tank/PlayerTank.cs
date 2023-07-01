@@ -7,11 +7,13 @@ using UnityEngine;
 public class PlayerTank : BaseTank
 {
     public int waponSpeed;
-    public Texture quasiStar; // 准星
+    
+    private Vector2 _quasiStarOriginalPos; // 准星原位置
 
     private void Start()
     {
         weapon = Instantiate(weapon, weaponMount, false); // 初始化武器
+        _quasiStarOriginalPos = GamePanel.Instance.quasiStar.GUIPos.OffSetPos; // 记录准星原始位置
     }
 
     // Update is called once per frame
@@ -26,20 +28,41 @@ public class PlayerTank : BaseTank
         // 炮管角度
         if (Input.GetKey(KeyCode.Q))
         {
-            quasiStar.GUIPos.OffSetPos.y--;
-            weapon.gameObject.transform.Rotate(Vector3.right * (Time.deltaTime * waponSpeed));
+            if (GamePanel.Instance.quasiStar.GUIPos.OffSetPos.y >=-68 && GamePanel.Instance.lbCd.GUIPos.OffSetPos.y >=-68)
+            {
+                GamePanel.Instance.quasiStar.GUIPos.OffSetPos.y--;
+                GamePanel.Instance.lbCd.GUIPos.OffSetPos.y--;
+            }
+
+            if (weapon.gameObject.transform.rotation.x <= 0)
+            {
+                weapon.gameObject.transform.Rotate(Vector3.right * (Time.deltaTime * waponSpeed));
+            }
+            
         }
         if (Input.GetKey(KeyCode.E))
         {
-            quasiStar.GUIPos.OffSetPos.y++;
-            weapon.gameObject.transform.Rotate(-Vector3.right * (Time.deltaTime * waponSpeed));
+            if (GamePanel.Instance.quasiStar.GUIPos.OffSetPos.y <=100 && GamePanel.Instance.lbCd.GUIPos.OffSetPos.y <=100)
+            {
+                GamePanel.Instance.quasiStar.GUIPos.OffSetPos.y++;
+                GamePanel.Instance.lbCd.GUIPos.OffSetPos.y++;
+            }
+            
+            if (weapon.gameObject.transform.rotation.x >= -0.15)
+            {
+                weapon.gameObject.transform.Rotate(-Vector3.right * (Time.deltaTime * waponSpeed));
+            }
         }
     }
 
     public void InstallWeapon(Weapon otherWeapon)
     {
         Destroy(this.weapon.gameObject);
-        this.weapon = Instantiate(otherWeapon, weaponMount, false); // 创建武器对象作为炮台的子对象
+        // 创建武器对象作为炮台的子对象
+        this.weapon = Instantiate(otherWeapon, weaponMount, false); 
+        //准星位置复原
+        GamePanel.Instance.quasiStar.GUIPos.OffSetPos = _quasiStarOriginalPos;
+        GamePanel.Instance.lbCd.GUIPos.OffSetPos = _quasiStarOriginalPos;
     }
 
     public override void Move()

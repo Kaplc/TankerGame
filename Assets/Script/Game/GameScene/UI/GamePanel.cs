@@ -11,9 +11,12 @@ public class GamePanel : BasePanel<GamePanel>
     public Button btnClose;
     public Button btnSetting;
     public Texture txHp;
+    public Texture quasiStar; // 准星
     public Control.Label lbTime;
     public Control.Label lbScore;
     public Control.Label lbFPS;
+    public Control.Label lbCd;
+    
     public int hpWidth;
     
     int frameCount = 0;
@@ -67,6 +70,8 @@ public class GamePanel : BasePanel<GamePanel>
             Cursor.lockState = CursorLockMode.None;
             
         }
+
+        
     }
 
     public void AddScore(int add)

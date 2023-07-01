@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587296853c6c7a44980315dc82e158f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponName: Cannon
+  cd: 1
   bulletPrefab: {fileID: 8027068844950658283, guid: bc8c60cfa139a2d4681434b336713e9c,
     type: 3}
   father: {fileID: 0}

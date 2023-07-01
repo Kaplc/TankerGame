@@ -34,8 +34,7 @@ public class Bullet : MonoBehaviour
             // audioSource.volume = BaseDataManage.Instance.musicData.soundValue;
             // audioSource.mute = !BaseDataManage.Instance.musicData.soundOpen;
             // Destroy(audioSource, 1);
-
-            Destroy(gameObject, 1);
+            Destroy(gameObject);
         }
     }
 
