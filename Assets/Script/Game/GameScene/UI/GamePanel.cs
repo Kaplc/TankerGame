@@ -16,30 +16,42 @@ public class GamePanel : BasePanel<GamePanel>
     public Control.Label lbScore;
     public Control.Label lbFPS;
     public Control.Label lbCd;
-    
+    public Control.Label lbSuspend;
+    public Control.Label lbHp;
     public int hpWidth;
-    
+
     int frameCount = 0;
     float deltaTime = 0.0f;
     float updateRate = 0.5f; // 更新帧率的时间间隔
+    public bool Suspend = false;
 
     [HideInInspector] public int score;
 
     [HideInInspector] public float time;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        // 初始化暂停标识
+        Suspend = false;
 
-        btnClose.ClickEvent += () => { QuitPanel.Instance.Show(); };
+        btnClose.ClickEvent += () =>
+        {
+            Suspend = true;
+            QuitPanel.Instance.Show();
+        };
         btnSetting.ClickEvent += () =>
         {
+            Suspend = true;
             SettingPanel.Instance.Show();
             Time.timeScale = 0;
         };
+
+        // 隐藏暂停标识
+        lbSuspend.Content.text = "";
     }
 
     // Update is called once per frame
@@ -61,17 +73,16 @@ public class GamePanel : BasePanel<GamePanel>
             frameCount = 0;
             deltaTime -= updateRate;
         }
-        
-        // 判断按下Esc
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            QuitPanel.Instance.Show();
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            
-        }
 
-        
+        // 判断按下BackQuote
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            lbSuspend.Content.text = lbSuspend.Content.text == "" ? "已暂停" : "";
+            Suspend = !Suspend;
+            Time.timeScale = Suspend ? 0 : 1;
+            Cursor.visible = !Cursor.visible;
+            Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+        }
     }
 
     public void AddScore(int add)
@@ -83,5 +94,6 @@ public class GamePanel : BasePanel<GamePanel>
     public void UpdateHp(int maxHp, int currHp)
     {
         txHp.GUIPos.Width = (float)currHp / maxHp * hpWidth;
+        lbHp.Content.text = currHp + "/" + maxHp;
     }
 }

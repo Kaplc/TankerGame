@@ -31,6 +31,7 @@ public class SettingPanel : BasePanel<SettingPanel>
             {
                 Hide();
             }
+            
         };
         this.Hide(); // 设置面板先隐藏自己
     }
@@ -38,8 +39,7 @@ public class SettingPanel : BasePanel<SettingPanel>
     public override void Hide()
     {
         base.Hide();
-        UpdateInfos(); 
-        Time.timeScale = 1;
+        UpdateInfos();
     }
 
     private void UpdateInfos()

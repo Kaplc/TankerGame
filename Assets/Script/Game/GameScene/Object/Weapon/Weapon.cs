@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
         if (currCd>=0)
         {
             currCd -= Time.deltaTime;
-            GamePanel.Instance.lbCd.Content.text = Math.Round(currCd,2) + "s";
+            GamePanel.Instance.lbCd.Content.text ="枪口过热CD " + Math.Round(currCd,2) + "s";
             return;
         }
 
@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
 
     public void Fire()
     {
-        if (currCd >= 0) return;
+        if (currCd >= 0 || GamePanel.Instance.Suspend) return;
         currCd = cd;
 
         for (int i = 0; i < firePos.Length; i++)

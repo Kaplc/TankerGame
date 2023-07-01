@@ -8,11 +8,10 @@ public class BaseReward : MonoBehaviour
     public int RotationSpeed = 100;
 
     public GameObject effectPrefbs;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void Update()
     {
-        
+        Round();
     }
 
     public void Round()

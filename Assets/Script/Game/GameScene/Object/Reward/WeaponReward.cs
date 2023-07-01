@@ -8,17 +8,6 @@ public class WeaponReward : BaseReward
 {
     public List<Weapon> weapons;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Round();
-    }
-
     protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

@@ -14,6 +14,8 @@ public class PlayerTank : BaseTank
     {
         weapon = Instantiate(weapon, weaponMount, false); // 初始化武器
         _quasiStarOriginalPos = GamePanel.Instance.quasiStar.GUIPos.OffSetPos; // 记录准星原始位置
+        
+        GamePanel.Instance.UpdateHp(maxHp, hp);
     }
 
     // Update is called once per frame
@@ -63,6 +65,7 @@ public class PlayerTank : BaseTank
         //准星位置复原
         GamePanel.Instance.quasiStar.GUIPos.OffSetPos = _quasiStarOriginalPos;
         GamePanel.Instance.lbCd.GUIPos.OffSetPos = _quasiStarOriginalPos;
+        GamePanel.Instance.lbCd.GUIPos.OffSetPos.y = -5;
     }
 
     public override void Move()
