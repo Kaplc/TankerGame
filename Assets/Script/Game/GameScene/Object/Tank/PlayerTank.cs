@@ -10,11 +10,14 @@ public class PlayerTank : BaseTank
     
     private Vector2 _quasiStarOriginalPos; // 准星原位置
 
-    private void Start()
+    private void Awake()
     {
         weapon = Instantiate(weapon, weaponMount, false); // 初始化武器
+    }
+
+    private void Start()
+    {
         _quasiStarOriginalPos = GamePanel.Instance.quasiStar.GUIPos.OffSetPos; // 记录准星原始位置
-        
         GamePanel.Instance.UpdateHp(maxHp, hp);
     }
 

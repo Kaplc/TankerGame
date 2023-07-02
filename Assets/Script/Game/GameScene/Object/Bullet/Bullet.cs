@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public BaseTank fatherTank; // 发射对象
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Destroy(gameObject, 3);
     }
@@ -25,7 +25,6 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Walls"))
         {
-            
             // 特效
             GameObject effObj = Instantiate(effectPrefbs, transform.position, transform.rotation);
             Destroy(effObj, 1);

@@ -42,6 +42,7 @@ public class Weapon : MonoBehaviour
         {
             // 创建子弹
             GameObject bullet = Instantiate(bulletPrefab, firePos[i].position, firePos[i].rotation);
+            
             // 发射音效
             AudioSource audioSource = bullet.GetComponent<AudioSource>();
             audioSource.volume = BaseDataManage.Instance.musicData.soundValue;
